@@ -39,6 +39,38 @@ public class MainViewModel extends AndroidViewModel {
             }
         }.execute();
     }
+
+    public void insertUser(final User user) {
+        new AsyncTask<User, Void, Integer>() {
+            @Override
+            protected Integer doInBackground(User... users) {
+                userDataBase.userDao().insert(users[0]);
+                return 0;
+            }
+
+            @Override
+            protected void onPostExecute(Integer integer) {
+                getApplication();
+                super.onPostExecute(integer);
+            }
+        }.execute(user);
+    }
+    public void updateUser(final User user) {
+        new AsyncTask<User, Void, Integer>() {
+            @Override
+            protected Integer doInBackground(User... users) {
+                userDataBase.userDao().update(users[0]);
+                return 0;
+            }
+
+            @Override
+            protected void onPostExecute(Integer integer) {
+                getApplication();
+                super.onPostExecute(integer);
+            }
+        }.execute(user);
+    }
+
     public User getUser(int id){
         for(User u: listUsersLiveData.getValue()){
             if(u.uuid == id){

@@ -68,7 +68,9 @@ public class UserFragment extends Fragment {
                                 Integer.parseInt(ed_age.getText().toString()),0);
                         user.uuid = mUserID;
                         viewModel.userDataBase.userDao().update(user);
+                        viewModel.updateUser(user);
                         viewModel.getAllUsers();
+
                     }
                 }
                 requireActivity().getSupportFragmentManager().beginTransaction()
